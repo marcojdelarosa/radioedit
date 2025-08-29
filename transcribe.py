@@ -1,13 +1,16 @@
 import whisper_timestamped as whisper
+from whisper_timestamped import make_subtitles
+
 import os
+def transcribe(input, output, model):
+    audio = whisper.load_audio(input)
 
-file = open(os.path.basename("testaudio.mp3"), "r")
+    model = whisper.load_model(model)
 
-audio = whisper.load_audio("C:\\Users\\marco\\Projects\\radioedit\\testaudio.mp3")
+    result = whisper.transcribe(model, audio, language="en")
 
-model = whisper.load_model("small", device="cpu")
-
-result = whisper.transcribe(model, audio, language="en")
-
-import json
-print(json.dumps(result, indent = 2, ensure_ascii = False))
+    import json
+    with open(output, 'w') as f:
+        print(json.dumps(result, indent = 2, ensure_ascii = False), file=f)
+        return(result)
+    return(False)

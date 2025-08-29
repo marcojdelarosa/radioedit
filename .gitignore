@@ -1,3 +1,12 @@
 uv.lock
 testaudio.mp3
 ffmpeg.exe
+testaudio*
+test_transcript.json
+out.srt
+test_transcript2.json
+.venv
+1_testaudio_(Vocals).wav
+out.json
+output.srt
+__pycache__
