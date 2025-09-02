@@ -10,3 +10,6 @@ test_transcript2.json
 out.json
 output.srt
 __pycache__
+.obsidian
+.vs
+x64
