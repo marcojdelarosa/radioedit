@@ -3,6 +3,7 @@ import transcribe
 import separate
 import exportsrt
 import os
+import censor
 
 def prepare(filename):
     print("Separating...")
@@ -10,12 +11,19 @@ def prepare(filename):
     print(separated_files)
     vocal_files = list(filter(lambda x: "Vocal" in x , separated_files))
     print("Transcribing...")
-    transcription = transcribe.transcribe(os.path.basename(vocal_files[0]), os.path.basename("out.json"), "small.en")
+    transcription = transcribe.transcribe(os.path.basename("raw_vocals.wav"), os.path.basename("out.json"), "small.en")
     print("Exporting SRT...")
     exportsrt.exportSrt(transcription, os.path.basename("output.srt"))
+    os.remove(os.path.basename("out.json"))
     return os.path.basename("output.srt")
 
 
-prep = gr.Interface(fn=prepare, inputs="file", outputs="file")
+prep = gr.Interface(fn=prepare, inputs=gr.File(label="Audio"), outputs="file")
+censorInterface = gr.Interface(fn=censor.censor, inputs=[ \
+    gr.File(label="Transcript"), \
+    gr.File(label="Vocals"),], \
+    outputs="audio")
 
-prep.launch()
+ui = gr.TabbedInterface([prep, censorInterface], ["Prepare", "Censor"])
+
+ui.launch()

@@ -10,6 +10,12 @@ def separate(input):
 
     # Perform the separation on specific audio files without reloading the model
     output_files = separator.separate(input)
+    if os.path.exists(os.path.basename("raw_inst.wav")):
+        os.remove("raw_inst.wav")
+    if os.path.exists(os.path.basename("raw_vocals.wav")):
+        os.remove("raw_vocals.wav")
+    os.rename(output_files[0], "raw_inst.wav", exist_ok=True)
+    os.rename(output_files[1], "raw_vocals.wav", exist_ok=True)
 
     print(f"Separation complete! Output file(s): {' '.join(output_files)}")
     return(output_files)

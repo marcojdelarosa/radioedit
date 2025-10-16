@@ -3,6 +3,7 @@ testaudio.mp3
 ffmpeg.exe
 testaudio*
 test_transcript.json
+bannedwords.json
 out.srt
 test_transcript2.json
 .venv
@@ -13,3 +14,5 @@ __pycache__
 .obsidian
 .vs
 x64
+*.wav
+*.mp3

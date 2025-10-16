@@ -8,5 +8,6 @@ dependencies = [
     "audio-separator[gpu]>=0.36.1",
     "gradio>=5.49.0",
     "openai-whisper>=20250625",
+    "srt>=3.5.3",
     "whisper-timestamped>=1.15.8",
 ]
