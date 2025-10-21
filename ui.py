@@ -11,19 +11,29 @@ def prepare(filename):
     print(separated_files)
     vocal_files = list(filter(lambda x: "Vocal" in x , separated_files))
     print("Transcribing...")
-    transcription = transcribe.transcribe(os.path.basename("raw_vocals.wav"), os.path.basename("out.json"), "small.en")
-    print("Exporting SRT...")
-    exportsrt.exportSrt(transcription, os.path.basename("output.srt"))
-    os.remove(os.path.basename("out.json"))
-    return os.path.basename("output.srt")
+    main_transcription = transcribe.transcribe(os.path.basename("raw_vocals_main.wav"), os.path.basename("main_transcript.json"), "medium.en")
+    print("Exporting Main SRT...")
+    bg_transcription = transcribe.transcribe(os.path.basename("raw_vocals_bg.wav"), os.path.basename("bg_transcript.json"), "medium.en")
+    print("Exporting BG SRT...")
+    exportsrt.exportSrt(main_transcription, os.path.basename("transcript_main.srt"))
+    exportsrt.exportSrt(bg_transcription, os.path.basename("transcript_bg.srt"))
+    # os.remove(os.path.basename("main_transcript.json"))
+    # os.remove(os.path.basename("bg_transcript.json"))
+    print("Done!")
+    return os.path.basename("transcript_main.srt")
 
+def transcribe_and_export(input, output):
+        transcription = transcribe.transcribe(input, os.path.basename("x_transcript.json"), "small.en")
+        exportsrt.exportSrt(transcription, output)
+        return(0)
 
 prep = gr.Interface(fn=prepare, inputs=gr.File(label="Audio"), outputs="file")
 censorInterface = gr.Interface(fn=censor.censor, inputs=[ \
     gr.File(label="Transcript"), \
     gr.File(label="Vocals"),], \
     outputs="audio")
+transcribeInterface = gr.Interface(fn = transcribe_and_export, inputs=["file","text"], outputs="text")
 
-ui = gr.TabbedInterface([prep, censorInterface], ["Prepare", "Censor"])
+ui = gr.TabbedInterface([prep, censorInterface, transcribeInterface], ["Prepare", "Censor", "Transcribe"])
 
 ui.launch()
