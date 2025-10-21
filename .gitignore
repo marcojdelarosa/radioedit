@@ -3,7 +3,6 @@ testaudio.mp3
 ffmpeg.exe
 testaudio*
 test_transcript.json
-bannedwords.json
 out.srt
 test_transcript2.json
 .venv
