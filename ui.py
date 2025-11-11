@@ -18,9 +18,9 @@ def transcribe_and_export(input, output):
 # define each interface for gradio
 fulleditInterface = gr.Interface(fn=full_edit, inputs=gr.File(label="Audio"), outputs="audio")
 prepareInterface = gr.Interface(fn=prepare, inputs=gr.File(label="Audio"), outputs="file")
-censorInterface = gr.Interface(fn=censor, inputs=[ \
-    gr.File(label="Transcript"), \
-    gr.File(label="Vocals"),], \
+censorInterface = gr.Interface(fn=censor, inputs=[ 
+    gr.File(label="Transcript"), 
+    gr.File(label="Vocals"),], 
     outputs="audio")
 transcribeInterface = gr.Interface(fn = transcribe_and_export, inputs=["file","text"], outputs="text")
 
@@ -36,7 +36,7 @@ ui = gr.TabbedInterface([fulleditInterface,
                          title="Radioedit", 
                          theme=gr.themes.Citrus())
 
-# print the title text. This is really unnecessary but I like doing it.
+# print the totally unnecessary title text
 print_title_text()
 
 # launch gradio, open in browser

@@ -1,3 +1,7 @@
+# The title text is a completely unnecessary feature, but I think it's cool.
+# Every program used to have ascii art whenever you ran it. It's a lost art.
+# Because of this I'm putting this big text in the beginning whenever you open the program.
+# Anyway here's the code.
 def rgb_bg(r, g, b):
     return(f"\033[48;2;{r};{g};{b}m")
 
@@ -16,9 +20,7 @@ def print_title_text():
     "\033[38;5;160m", rgb_bg(21, 26, 23),  "  ███    ███   ███    ███ ███   ▄███ ███  ███    ███   ███    ███ ███   ▄███ ███      ███    \n"
     "\033[38;5;196m"  "\033[48;5;233m"     "  ███    ███   ███    █▀  ████████▀  █▀    ▀██████▀    ███    ███ ████████▀  █▀      ▄████▀  \n" 
     "\033[38;5;196m"  "\033[48;5;232m"     "  ███    ███                                           ██████████                            \n"
-    "\033[0m"        # reset
-    "\033[38;5;196m" # red foreground
-    "\033[3m", # italics
+    "\033[0m",          # reset
     sep="")
 
 print_title_text()
