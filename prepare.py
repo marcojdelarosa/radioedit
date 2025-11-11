@@ -11,29 +11,35 @@ FILES_TO_CLEAN = ["censored_raw_vocals_bg.wav", "censored_raw_vocals_main.wav",
                   "main_transcript.json"]
 
 def prepare(filename):
+    # if any files from previous runs exist, remove them
     for file in FILES_TO_CLEAN:
         if os.path.exists(file):
             os.remove(file)
 
+     # separate the vocals and inst
     print("Separating...")
     separated_files = separate.separate(filename)
     print(separated_files)
-    vocal_files = list(filter(lambda x: "Vocal" in x , separated_files))
-     
+
+     # transcribe main vocals     
     print("Transcribing main vocals...")
-    main_transcription = transcribe.transcribe( \
-         os.path.basename("raw_vocals_main.wav"), \
+    main_transcription = transcribe.transcribe( 
+         os.path.basename("raw_vocals_main.wav"), 
          os.path.basename("main_transcript.json"), "medium.en")
     
+    # transcribe bg vocals
     print("Transcribing background vocals...")
-    bg_transcription = transcribe.transcribe( \
-         os.path.basename("raw_vocals_bg.wav"), \
+    bg_transcription = transcribe.transcribe( 
+         os.path.basename("raw_vocals_bg.wav"), 
          os.path.basename("bg_transcript.json"), "medium.en")
     
+    # export SRTs
     print("Exporting Main SRT...")
-    exportsrt.exportSrt(main_transcription, \
+    exportsrt.exportSrt(main_transcription, 
                         os.path.basename("transcript_main.srt"))
     print("Exporting BG SRT...")
-    exportsrt.exportSrt(bg_transcription, os.path.basename("transcript_bg.srt"))
+    exportsrt.exportSrt(bg_transcription, 
+                        os.path.basename("transcript_bg.srt"))
+
     print("Done!")
     return os.path.basename("transcript_main.srt")

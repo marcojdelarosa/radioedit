@@ -1,10 +1,7 @@
-import json
-import os
 from whisper_timestamped import make_subtitles
 
 def exportSrt(input, output):
     out = open(output, 'w')
-    # Load the JSON data from the file into a Python object (usually a dictionary or list)
     i = 1
     for segment in input["segments"]:
         for word in segment["words"]:
