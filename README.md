@@ -1,4 +1,13 @@
-# Radioedit 
+   ▄████████                                            ▄████████
+  ███    ███    ▄████████ ████████▄   ▄█   ▄██████▄    ███    ███ ████████▄   ▄█      ███
+  ███    ███   ███    ███ ███   ▀███ ███  ███    ███   ███    ███ ███   ▀███ ███  ▀█████████▄
+  ███    ███   ███    ███ ███    ███ ███▌ ███    ███   ███    █▀  ███    ███ ███▌    ▀███▀▀██
+ ▄███▄▄▄▄██▀   ███    ███ ███    ███ ███▌ ███    ███  ▄███▄▄▄     ███    ███ ███▌     ███   ▀
+▀▀███▀▀▀▀▀   ▀███████████ ███    ███ ███▌ ███    ███ ▀▀███▀▀▀     ███    ███ ███▌     ███
+▀███████████   ███    ███ ███    ███ ███  ███    ███   ███    █▄  ███    ███ ███      ███
+  ███    ███   ███    ███ ███   ▄███ ███  ███    ███   ███    ███ ███   ▄███ ███      ███
+  ███    ███   ███    █▀  ████████▀  █▀    ▀██████▀    ███    ███ ████████▀  █▀      ▄████▀
+  ███    ███                                           ██████████ 
 
 Radioedit is a tool for automatically editing music to be played on the radio. FCC Guidelines require all music played on radio to be censored. If you don't have stems for the song, and there is no pre-existing censored version, you can use Radioedit to generate versions of songs that pass these guidelines.  
 
