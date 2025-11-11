@@ -38,11 +38,11 @@ def censor(transcriptFilename, audioFilename):
         else:
             vocal_segment = vocal_audio[subtitle_start_ms:subtitle_end_ms]
             out_audio += vocal_segment
-            print(subtitle.content)
+            print(subtitle.content, end = " ")
 
         last_segment_ms = subtitle_end_ms
 
-    print("clean audio exported!")
+    print("\nclean audio exported!")
     out_audio.export("censored_" + os.path.basename(audioFilename), format="wav")
 
     # repeat to get residual 
@@ -65,7 +65,7 @@ def censor(transcriptFilename, audioFilename):
         if word in banned_words:
             vocal_segment = vocal_audio[subtitle_start_ms:subtitle_end_ms]
             out_audio += vocal_segment
-            print("banned word: ", subtitle.content)
+            print(subtitle.content, end= " ")
         else:
             silence_duration = (subtitle_end_ms) - (subtitle_start_ms)
             silence_segment = AudioSegment.silent(duration=silence_duration)
@@ -73,7 +73,7 @@ def censor(transcriptFilename, audioFilename):
 
         last_segment_ms = subtitle_end_ms
 
-    print("explicit audio exported!")
+    print("\nexplicit audio exported!")
     out_audio.export("explicit_" + os.path.basename(audioFilename), format="wav")
 
     return "censored_" + os.path.basename(audioFilename)

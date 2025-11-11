@@ -50,4 +50,4 @@ ui = gr.TabbedInterface([fulleditInterface,
 
 print_title_text()
 
-ui.launch()
+ui.launch(inbrowser=True)
